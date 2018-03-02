@@ -1,0 +1,11 @@
+{
+	"URL_BASE": "http://yourserver.com",
+	"DB_ENV": "development",
+	"SHOW_ERRORS": true,
+	"VIEW_FOLDER": "views",
+	"CONTROLLER_FOLDER": "controllers",
+	"MODELS_FOLDER": "models",
+	"SYSTEM_FOLDER": "system",
+	"CONFIG_FOLDER": "config",
+	"USE_ROUTES": true
+}
