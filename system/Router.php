@@ -29,10 +29,18 @@ class Router
     private static function orderRoutes()
     {
         $count_params = array();
+        $count_params_vars = array();
+        $count_vars = 0;    
         foreach (self::$routes as $key => $value) {
             $count_params[$key] = count($value->url_array);
+            foreach ($value->url_array as $param) {
+                if (mb_substr($param, 0, 1) == ':') {
+                    $count_vars++;
+                }
+            }
+            $count_params_vars[$key] = $count_vars;
         }
-        array_multisort($count_params, SORT_ASC, self::$routes);
+        array_multisort($count_params, SORT_ASC, $count_params_vars, SORT_ASC, self::$routes);
     }
 
     public static function get($url, $controller, $method)
