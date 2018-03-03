@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe de Acesso ao Banco para a model Elore
+ * Classe de Acesso ao Banco para a model Default
  */
 class DefaultDAO extends DAO
 {

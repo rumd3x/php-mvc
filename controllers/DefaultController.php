@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Controller SMSCadastros
+ * Controller Default
  */
 class DefaultController extends Controller
 {

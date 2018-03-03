@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe de Modelo de Regra de Negócio Elore EAD
+ * Classe de Modelo de Regra de Negócio Padrão
  */
 class DefaultModel extends Model
 {
