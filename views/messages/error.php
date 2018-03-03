@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,44 +9,18 @@
 <body>
 	<div class="container">
 		<div style="margin: 30px;" class="alert alert-danger">
-		  <b>Erro</b>: <?php 
-				echo $ex->getMessage();
-			?>
- <br>
-		  <b>No Arquivo</b> 
-		  <?php 
-			echo $ex->getFile();
-			?>
- <br>
-		  <b>Na Linha</b>: <?php 
-echo $ex->getLine();
-?>
+		  <b>Erro</b>: <?php echo $ex->getMessage(); ?> <br>
+		  <b>No Arquivo</b><?php echo $ex->getFile(); ?> <br>
+		  <b>Na Linha</b>: <?php echo $ex->getLine(); ?>
 		</div>
 		<div style="margin: 30px;" class="alert alert-info">
-		  	<?php 
-foreach ($ex->getTrace() as $index => $log) {
-    ?>
-		  		<b>Chamada <?php 
-    echo $index;
-    ?>
-</b>: 
-		  		Através de <b><?php 
-    echo $log['function'];
-    ?>
-()</b> 
-		  		na linha <b><?php 
-    echo $log['line'];
-    ?>
-</b>  
-		  		do arquivo <b><?php 
-    echo $log['file'];
-    ?>
-</b>.
+		  	<?php
+		  		foreach ($ex->getTrace() as $index => $log) {
+    		?>
+		  		<b>Chamada <?php  echo $index; ?></b>: Através de <b><?php echo $log['function']; ?>()</b> na linha <b><?php echo $log['line']; ?> do arquivo <b><?php echo $log['file'];?></b>.
 		  		<br>
-		  	<?php 
-}
-?>
+		  	<?php } ?>
 		</div>
 	</div>
 </body>
-</html><?php 
+</html>

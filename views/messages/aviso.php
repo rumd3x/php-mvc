@@ -9,11 +9,8 @@
 <body>
 	<div class="container">
 		<div style="margin: 30px;" class="alert alert-<?php echo $tipo;?>">
-		  <strong>Aviso:</strong> 
-		  	<?php 
-				echo $msg;
-			?>
+		  <strong>Aviso:</strong> <?php echo $msg; ?>
 		</div>
 	</div>
 </body>
-</html><?php 
+</html>
