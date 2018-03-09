@@ -17,7 +17,7 @@
 		  	<?php
 		  		foreach ($ex->getTrace() as $index => $log) {
     		?>
-		  		<b>Chamada <?php  echo $index; ?></b>: Através de <b><?php echo $log['function']; ?>()</b> na linha <b><?php echo $log['line']; ?> do arquivo <b><?php echo $log['file'];?></b>.
+		  		<b>Chamada <?php  echo $index; ?></b>: Através de <b><?php echo $log['function']; ?>()</b> na linha <b><?php echo $log['line']; ?></b> do arquivo <b><?php echo $log['file'];?></b>.
 		  		<br>
 		  	<?php } ?>
 		</div>
