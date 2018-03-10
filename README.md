@@ -72,16 +72,14 @@ The **USE_ROUTES** directive changes the behavior of your app. If you set it to 
 Now in the **config/db.php** file you should have at least one environment configured, corresponding to the one you put on your **DB_ENV** directive in your **environment.json** file. You can have multiple database environments set up and you can use any of them at any time.
 
 The **db.php** file should look like this:
-```php
-<?php 
-	ActiveRecord::addEnv('development', array(
-		'driver' => 'mysqli', 
-		'host' => 'mysql.server.com', 
-		'database' => 'testdb', 
-		'username' => 'root', 
-		'password' => ''
-	));
-?>
+```php 
+ActiveRecord::addEnv('development', array(
+	'driver' => 'mysqli', 
+	'host' => 'mysql.server.com', 
+	'database' => 'testdb', 
+	'username' => 'root', 
+	'password' => ''
+));
 ```
 
 ### Setting up your routes
@@ -95,22 +93,18 @@ But if you want custom routes, this offers a nice  laravel-like solution.
 You can make your own routes in the **config/routes.php** file. It should look like this
 
 ```php
-	<?php
-		Router::get('/', 'DefaultController', 'index');
-	?>
+Router::get('/', 'DefaultController', 'index');
 ```
 
 In the above example you are telling the program that when you access the root of your app thru an HTTP GET request it should call the *index* method of the controller *DefaultController*
 
 It also support Routing Groups, just like laravel.
 ```php
-	<?php
-		Router::group('/example', 'DefaultController', array(
-			array('get', '/', 'test'),
-			array('post', '/test', 'test_all'),
-			array('get', '/test/:id', 'test_id'),
-		));
-	?>
+Router::group('/example', 'DefaultController', array(
+	array('get', '/', 'test'),
+	array('post', '/test', 'test_all'),
+	array('get', '/test/:id', 'test_id'),
+));
 ```
 
 In the above example you just registered three routes:
