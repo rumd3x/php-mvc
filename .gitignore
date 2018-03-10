@@ -1,3 +1,5 @@
-*.htaccess
+.htaccess
 environment.json
-config/*.php
+!*.example
+config/*
+!config/*.example

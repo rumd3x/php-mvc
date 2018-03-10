@@ -7,5 +7,6 @@
 	"MODELS_FOLDER": "models",
 	"SYSTEM_FOLDER": "system",
 	"CONFIG_FOLDER": "config",
+	"LIB_FOLDER": "libraries",
 	"USE_ROUTES": true
 }
