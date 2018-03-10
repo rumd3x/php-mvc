@@ -3,17 +3,17 @@
 /**
  * Controller Default
  */
-class DefaultController extends Controller
+class ExampleController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
-        Loader::model('DefaultModel');
+        Loader::model('ExampleModel');
     }
 
     public static function index($params)
     {
-    	$model = new DefaultModel();
+    	$model = new ExampleModel();
     	var_dump($model->teste());
         Loader::view('messages/aviso', array('tipo' => 'info', 'msg' => 'Consulte a documentação.'));
     }

@@ -3,9 +3,9 @@
 /**
  * Classe de Acesso ao Banco para a model Default
  */
-class DefaultDAO extends DAO
+class ExampleDAO extends DAO
 {
     public function select() {
-        return $this->db->get('migrations')->result();
+        return $this->db->get('table_name')->result();
     }
 }
