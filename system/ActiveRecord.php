@@ -1,9 +1,12 @@
 <?php
+
 define('BASEPATH', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 define('APPPATH', realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR);
 define('ENVIRONMENT', DB_ENV);
+
 Loader::system('CI_Common');
 Loader::system('database/DB');
+
 class ActiveRecord
 {
 	private static $db_configs = array();	
