@@ -42,7 +42,7 @@ Or if your app is not on the root of the environment use
 Now to configure your **environment.json** file.
 Initially it should look like this
 
-```
+```json
 {
 	"URL_BASE": "http://yourserver.com/index.php",
 	"DB_ENV": "development",
@@ -72,7 +72,7 @@ The **USE_ROUTES** directive changes the behavior of your app. If you set it to 
 Now in the **config/db.php** file you should have at least one environment configured, corresponding to the one you put on your **DB_ENV** directive in your **environment.json** file. You can have multiple database environments set up and you can use any of them at any time.
 
 The **db.php** file should look like this:
-```
+```php
 <?php 
 	ActiveRecord::addEnv('development', array(
 		'driver' => 'mysqli', 
@@ -94,7 +94,7 @@ But if you want custom routes, this offers a nice  laravel-like solution.
 
 You can make your own routes in the **config/routes.php** file. It should look like this
 
-```
+```php
 	<?php
 		Router::get('/', 'DefaultController', 'index');
 	?>
@@ -103,7 +103,7 @@ You can make your own routes in the **config/routes.php** file. It should look l
 In the above example you are telling the program that when you access the root of your app thru an HTTP GET request it should call the *index* method of the controller *DefaultController*
 
 It also support Routing Groups, just like laravel.
-```
+```php
 	<?php
 		Router::group('/example', 'DefaultController', array(
 			array('get', '/', 'test'),
@@ -122,9 +122,9 @@ In the above example you just registered three routes:
 
 In the third example, it has a custom parameter, identified by the **:** at the start, when you navigate to the third url, the router would build something like
 
-```
-	$params = array('id' => '123');
-	DefaultController::test_id($params);
+```php
+$params = array('id' => '123');
+DefaultController::test_id($params);
 ```
 
 ## Actually building YOUR application
@@ -135,7 +135,7 @@ Put all your public files inside your views folder.
 You can have as many subfolders as you like.
 If you are using the system Router, it will encapsulate the available files inside the views folder.
 So, if you want to include your .js script that is in */views/example/form.js* you should do it like this:
-```
+```html
 <script src="<?=BASE_URL?>/example/form.js" />
 ```
 
@@ -146,41 +146,39 @@ Now, to actually building your OWN application on top of the base, you create yo
 
 Just make sure you load the necessary models using the *Loader* class and you extend the system default controller.
 
-```
-<?php
-	class DefaultController extends Controller {
+```php
+class DefaultController extends Controller {
 
-		...
-		Loader::model('DefaultModel');
-		...
+	...
+	Loader::model('DefaultModel');
+	...
 ```
 
 ### Models
 The models are also pretty straightforward, just extend from the default Model, and include the respective Data-Access-Object.
-```
-<?php
-	class DefaultModel extends Model {
+```php
+class DefaultModel extends Model {
 
-		public $id;
-		public $description;
+	public $id;
+	public $description;
 
-		...
+	...
 
-		public function __construct()
-	    {
-	        Loader::model('DefaultDAO');
-	        $this->dao = new DefaultDAO();
-	    }
+	public function __construct()
+    {
+	Loader::model('DefaultDAO');
+	$this->dao = new DefaultDAO();
+    }
 
 ```
 
 The Data-Access-Objects are also pretty straightforward, just make sure you extend the default system DAO and you will have the beautiful CodeIgniter querybuilder already connected to your database and available for you to use.
 
 [CodeIgniter QueryBuilder Documentation](https://www.codeigniter.com/userguide3/database/query_builder.html)
-```
-	class DefaultDAO extends DAO {
+```php
+class DefaultDAO extends DAO {
 
-		public function test() {
-			$this->db // <-- THIS IS THE ACTUAL CODE IGNITER ACTIVE RECORD QUERY BUILDER ALREADY CONNECTED TO YOUR DATABASE!
-		}
+	public function test() {
+		$this->db // <-- THIS IS THE ACTUAL CODE IGNITER ACTIVE RECORD QUERY BUILDER ALREADY CONNECTED TO YOUR DATABASE!
+	}
 ```
