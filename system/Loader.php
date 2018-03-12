@@ -84,7 +84,7 @@ class Loader
         echo json_encode($var);
     }
 
-    public static getExtensionMimeType($extension) {
+    public static function getExtensionMimeType($extension) {
         switch (strtolower(".$extension")) {
             case ".3dm": $mime = "x-world/x-3dmf"; break;
             case ".3dmf": $mime = "x-world/x-3dmf"; break;
