@@ -12,8 +12,12 @@ try {
 
 class Core
 {
+
+    private static $execution_time_start;
+
     public static function init()
     {
+        Core::$execution_time_start = microtime(true);
         // Carrega as classes necessárias do sistema
         Loader::system('ActiveRecord');        
         Loader::system('BaseDAO');
@@ -93,5 +97,12 @@ class Core
     {
         http_response_code($status);
         Loader::view('messages/error', array('tipo' => 'danger', 'ex' => $ex));
+    }
+
+    public static function getExecutionTime($precision = 3)
+    {
+        $decorrido_segundos = microtime(true) - self::$execution_time_start;
+        $decorrido_segundos_formatado = number_format($decorrido_segundos, $precision);
+        return rtrim($decorrido_segundos_formatado, '0');
     }
 }
