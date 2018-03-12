@@ -14,8 +14,7 @@ class ExampleController extends Controller
     public static function index($params)
     {
     	$model = new ExampleModel();
-    	var_dump($model->teste());
-        Loader::view('messages/aviso', array('tipo' => 'info', 'msg' => 'Consulte a documentação.'));
+        Loader::view('messages/aviso', array('tipo' => 'info', 'msg' => "Demorou: ".Core::getExecutionTime()." segundos."));
     }
 
 }
