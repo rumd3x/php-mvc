@@ -31,10 +31,10 @@ class Loader
 
     public static function utilize($folder, $file, $recursive = false)
     {
-        $filename = "{$folder}/{$file}.php";
-        if (is_file($filename)) {
-            require_once $filename;
-        } elseif (is_dir($filename)) {
+        $filename = "{$folder}/{$file}";
+        if (is_file("$filename.php")) {
+            require_once "$filename.php";
+        } elseif (is_dir($filename) && $recursive) {
             $matches = glob($filename.DIRECTORY_SEPARATOR."*.php");
             if (!empty($matches)) {
                 foreach ($matches as $matched_filename) {
