@@ -77,6 +77,7 @@ class Core
             if (class_exists($controller)) {
                 if (method_exists($controller, $method)) {
                     try {
+                        $args = self::requestArray()->type == 'POST' ? array_merge($args, $_POST) : $args;
                         $controllerObj = new $controller();
                         $controllerObj->{$method}($args);
                     } catch (Exception $ex) {
