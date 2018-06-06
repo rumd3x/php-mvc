@@ -24,7 +24,7 @@ class Loader
             ${$varname} = $varval;
         }
         http_response_code($http_status);
-        header('Content-Type: text/html; charset=utf-8');
+        @header('Content-Type: text/html; charset=utf-8');
         include VIEW_FOLDER . "/{$file}.php";
         echo '<input type="hidden" id="URL_BASE" value="' . URL_BASE . '" />';
     }
@@ -42,6 +42,11 @@ class Loader
                 }
             }
         }
+    }
+
+    public static function controller($file)
+    {
+        Loader::utilize(CONTROLLER_FOLDER, $file);
     }
 
     public static function system($file)
@@ -66,12 +71,17 @@ class Loader
     
     public static function file($file)
     {
-        if (file_exists($file)) {
+        if (file_exists($file) && !is_dir($file)) {
             http_response_code(200);
             $pathinfo = pathinfo($file);
-            $mime = self::getExtensionMimeType($pathinfo['extension']);
-            header('Content-Type: $mime'); 
-            file_get_contents($file);        
+            $extension = $pathinfo['extension'];
+            if ($extension != "php") {
+                $mime = self::getExtensionMimeType($extension);
+                header("Content-Type: $mime"); 
+                echo file_get_contents($file);        
+            } else {
+                Loader::view('messages/aviso', array('tipo' => 'danger', 'msg' => 'Acesso direto não autorizado.'), 503);
+            }
         } else {
             Loader::view('messages/aviso', array('tipo' => 'danger', 'msg' => 'Rota não cadastrada.'), 404);
         }
@@ -172,8 +182,8 @@ class Loader
             case ".crt": $mime = "application/x-x509-user-cert"; break;
             case ".csh": $mime = "application/x-csh"; break;
             case ".csh": $mime = "text/x-script.csh"; break;
-            case ".css": $mime = "application/x-pointplus"; break;
             case ".css": $mime = "text/css"; break;
+            case ".css": $mime = "application/x-pointplus"; break;
             case ".cxx": $mime = "text/plain"; break;
             case ".dcr": $mime = "application/x-director"; break;
             case ".deepv": $mime = "application/x-deepv"; break;
