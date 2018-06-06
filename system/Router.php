@@ -101,6 +101,7 @@ class Router
         }
         return $ret;
     }
+
     public static function getRequestHeaders()
     {
         $headers = array();
@@ -112,6 +113,21 @@ class Router
             $headers[$header] = $value;
         }
         return $headers;
+    }
+
+    public static function redirect($address, $timeout = 0, $kill = true)
+    {
+        $address = URL_BASE.$address;
+        $timeout = $timeout < 0 ? 0 : $timeout;
+        if ($timeout == 0) {
+            header("Location: ${address}");
+            echo "<script type=\"text/javascript\">window.location.href = '${address}';</script>";
+        } else {
+            header("Refresh:${timeout}; url=${address}");
+            echo "setTimeout(\"location.href = 'https://www.quackit.com';\",1500);";
+        }
+        echo "<meta http-equiv=\"refresh\" content=\"${timeout};url=${address}\"/>";
+        if ($kill) die("Redirecionando...");
     }
 
 }
